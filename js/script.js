@@ -211,14 +211,24 @@ function validateLead(data) {
   const errors = {};
   const namePattern = /^[A-Za-z ]+$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^\d{10}$/;
+  const phonePattern = /^[6-9]\d{9}$/;
+  const trimmedName = data.fullName.trim();
+  const nameParts = trimmedName.split(/\s+/);
 
-  if (!data.fullName.trim()) errors.fullName = "Name cannot be empty.";
-  else if (data.fullName.trim().length < 3) errors.fullName = "Name must be at least 3 characters.";
-  else if (!namePattern.test(data.fullName.trim())) errors.fullName = "Name can contain letters and spaces only.";
+  if (!trimmedName) {
+    errors.fullName = "Name cannot be empty.";
+  } else if (!namePattern.test(trimmedName)) {
+    errors.fullName = "Name can contain letters and spaces only.";
+  } else if (nameParts.length < 2) {
+    errors.fullName = "Please enter both your first name and last name.";
+  }
 
   if (!emailPattern.test(data.email.trim())) errors.email = "Enter a valid email address.";
-  if (!phonePattern.test(data.phone.trim())) errors.phone = "Phone number must contain exactly 10 digits.";
+  
+  if (!phonePattern.test(data.phone.trim())) {
+    errors.phone = "Phone number must be 10 digits and start with 6, 7, 8, or 9.";
+  }
+  
   if (!data.service) errors.service = "Please select a service.";
   if (!data.budget.trim() || Number.isNaN(Number(data.budget))) errors.budget = "Budget must be numeric.";
   if (data.description.trim().length < 20) errors.description = "Project description must be at least 20 characters.";

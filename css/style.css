@@ -604,8 +604,7 @@ cite {
   font-style: normal;
 }
 
-.video-frame,
-.map-frame {
+.video-frame{
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
@@ -619,7 +618,6 @@ cite {
 }
 
 .video-frame iframe,
-.map-frame iframe,
 .frame-demo-grid iframe {
   width: 100%;
   height: 100%;
@@ -822,11 +820,6 @@ textarea {
   font-size: 0.9rem;
 }
 
-.map-frame {
-  height: 300px;
-  margin-top: 1.2rem;
-}
-
 .frame-demo-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -963,7 +956,7 @@ textarea {
   }
 
   .hero {
-    min-height: auto;
+    min-height: 0;
   }
 
   .hero-copy h1,
