@@ -25,52 +25,127 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="project-gallery">
+    <section class="section" aria-labelledby="projects-page-title">
       <div class="container">
+        
         <div class="section-heading">
-          <p class="eyebrow">Work samples</p>
-          <h2 id="project-gallery">Project Gallery</h2>
+          <p class="eyebrow">Showcase</p>
+          <h2 id="projects-page-title">Featured Projects</h2>
+          <p>A gallery of production-ready systems, custom business engines, and custom software architectures built to streamline practical organizational requirements.</p>
         </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <img src="images/Business_Enquiry_Website.jpeg" alt="Business website project preview" width="640" height="420" loading="lazy">
-            <div class="project-body">
-              <h3>Business Enquiry Website</h3>
-              <p>Responsive business profile website designed to convert visitors into project enquiries.</p>
-              <p class="tech-list">HTML5, CSS3, JavaScript, SEO</p>
-              <div class="project-actions">
-                <button class="btn btn-small" type="button" data-project="business">Details</button>
-                <a class="text-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+
+        <!-- ==========================================================================
+             RESTRUCTURED PROJECT GALLERY GRID (2 IN ONE ROW / 2 IN OTHER)
+             ========================================================================== -->
+        <div class="project-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem;">
+          
+          <!-- PROJECT 1: NUTRAGRAPH (FINAL YEAR ARCHITECTURE) -->
+          <article class="project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <!-- Corrected Image Path based on image_89e270.png -->
+              <img src="images/NutraGraph1.png" alt="NutraGraph Landing Matrix Layout Dashboard View">
+              <div class="project-body">
+                <h3>NutraGraph</h3>
+                <p>An enterprise-grade optimization and diet planning infrastructure leveraging complex mathematical linear programming models to process seasonal data paired with a semantic context engine.</p>
+                <div class="tech-list" style="margin-top: 1rem; margin-bottom: 1rem;">
+                  <span style="font-size:0.8rem; font-weight:700;">FastAPI, PostgreSQL, PuLP Library, Python, RAG Architecture</span>
+                </div>
               </div>
             </div>
-          </article>
-          <article class="project-card">
-            <img src="images/Python_Student_Manager.jpeg" alt="Python application project preview" width="640" height="420" loading="lazy">
-            <div class="project-body">
-              <h3>Python Student Manager</h3>
-              <p>Python project concept for managing student records with validation and organized data handling.</p>
-              <p class="tech-list">Python, OOP, File Handling</p>
-              <div class="project-actions">
-                <button class="btn btn-small" type="button" data-project="python">Details</button>
-                <a class="text-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-              </div>
+            <div class="project-actions" style="padding: 0 1.1rem 1.1rem; display: flex; gap: 0.5rem; justify-content: flex-start; align-items: center;">
+              <button class="btn btn-primary btn-small" type="button" onclick="openNutraPreview()" style="cursor: pointer;">Preview App Images</button>
+              <button class="btn btn-secondary btn-small" type="button" data-project="nutragraph">Details</button>
             </div>
           </article>
-          <article class="project-card">
-            <img src="images/SQL_Inventory_Database.jpeg" alt="SQL database project preview" width="640" height="420" loading="lazy">
-            <div class="project-body">
-              <h3>SQL Inventory Database</h3>
-              <p>Normalized database design for inventory tracking, reporting, and clean relational queries.</p>
-              <p class="tech-list">SQL, ER Model, Queries</p>
-              <div class="project-actions">
-                <button class="btn btn-small" type="button" data-project="sql">Details</button>
-                <a class="text-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+
+          <!-- PROJECT 2: BUSINESS ENQUIRY WEBSITE -->
+          <article class="project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <img src="images/Business_Enquiry_Website.jpeg" alt="Business Enquiry Website Dashboard Mockup Screen">
+              <div class="project-body">
+                <h3>Business Enquiry Website</h3>
+                <p>A conversion-focused multi-page profile optimized with clear actionable conversion funnels, custom semantic service schemas, metadata, and comprehensive event logging parameters.</p>
+                <div class="tech-list" style="margin-top: 1rem; margin-bottom: 1rem;">
+                  <span style="font-size:0.8rem; font-weight:700;">HTML5, CSS3, Vanilla JavaScript, SEO, GA4 Event Models</span>
+                </div>
               </div>
             </div>
+            <div class="project-actions" style="padding: 0 1.1rem 1.1rem; display: flex; justify-content: space-between; align-items: center;">
+              <button class="btn btn-secondary btn-small" type="button" data-project="business">Details</button>
+              <a href="https://github.com/" target="_blank" rel="noopener" class="text-link" style="font-size: 0.9rem;">GitHub</a>
+            </div>
           </article>
+
+          <!-- PROJECT 3: PYTHON STUDENT MANAGER -->
+          <article class="project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <img src="images/Python_Student_Manager.jpeg" alt="Python Student Manager Application CLI Interface Window">
+              <div class="project-body">
+                <h3>Python Student Manager</h3>
+                <p>An advanced application architecture pattern implementing clean object-oriented design structures, strict input serialization checking, validation filters, and database record logging handlers.</p>
+                <div class="tech-list" style="margin-top: 1rem; margin-bottom: 1rem;">
+                  <span style="font-size:0.8rem; font-weight:700;">Python, OOP Paradigm, Input Serialization, Local Storage Handling</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-actions" style="padding: 0 1.1rem 1.1rem; display: flex; justify-content: space-between; align-items: center;">
+              <button class="btn btn-secondary btn-small" type="button" data-project="python">Details</button>
+              <a href="https://github.com/" target="_blank" rel="noopener" class="text-link" style="font-size: 0.9rem;">GitHub</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: SQL INVENTORY DATABASE -->
+          <article class="project-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <img src="images/SQL_Inventory_Database.jpeg" alt="SQL Inventory Database Normalization ER Diagram Tool Grid">
+              <div class="project-body">
+                <h3>SQL Inventory Database</h3>
+                <p>A deeply normalized multi-table relational model structure tracking production assets, real-time supplier metrics, incoming operational requests, and optimized transactional query configurations.</p>
+                <div class="tech-list" style="margin-top: 1rem; margin-bottom: 1rem;">
+                  <span style="font-size:0.8rem; font-weight:700;">SQL, Relational ER Modeling, Normalization Indexes, Aggregated Joins</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-actions" style="padding: 0 1.1rem 1.1rem; display: flex; justify-content: space-between; align-items: center;">
+              <button class="btn btn-secondary btn-small" type="button" data-project="sql">Details</button>
+              <a href="https://github.com/" target="_blank" rel="noopener" class="text-link" style="font-size: 0.9rem;">GitHub</a>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
+
+    <dialog id="nutraPreviewModal" style="width: min(90vw, 1000px); background: var(--bg-card, var(--surface)); color: var(--text); border: 1px solid var(--line); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); overflow-y: auto; max-height: 85vh;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem;">
+        <h2 style="margin: 0; font-size: 1.5rem;">NutraGraph Interface Architecture Preview</h2>
+        <button type="button" onclick="closeNutraPreview()" style="cursor: pointer; background: none; border: 1px solid var(--line); padding: 0.25rem 0.6rem; border-radius: var(--radius); font-weight: 800; color: var(--text);">✕ Close</button>
+      </div>
+      
+      <!-- 2 Columns x 2 Rows Layout Grid for the Images Inside Modal Display -->
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+        <div style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #000;">
+          <p style="margin: 0.4rem; font-size: 0.8rem; font-weight: bold; color: #fff; text-align: center;">1. Primary Dashboard Interface</p>
+          <!-- Corrected Image Path based on image_89e270.png -->
+          <img src="images/NutraGraph1.png" alt="Dashboard Hub Panel View" style="width:100%; height:auto; display:block;">
+        </div>
+        <div style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #000;">
+          <p style="margin: 0.4rem; font-size: 0.8rem; font-weight: bold; color: #fff; text-align: center;">2. Macro Distributions Data Analytics Matrix</p>
+          <!-- Corrected Image Path based on image_89e270.png -->
+          <img src="images/NutraGraph2.png" alt="Advanced Analytics Overlay Graph Display View" style="width:100%; height:auto; display:block;">
+        </div>
+        <div style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #000;">
+          <p style="margin: 0.4rem; font-size: 0.8rem; font-weight: bold; color: #fff; text-align: center;">3. Command Center Optimization Workflows</p>
+          <!-- Corrected Image Path based on image_89e270.png -->
+          <img src="images/NutraGraph3.png" alt="Meal Architecture Tracking Controls Workspace Screen" style="width:100%; height:auto; display:block;">
+        </div>
+        <div style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #000;">
+          <p style="margin: 0.4rem; font-size: 0.8rem; font-weight: bold; color: #fff; text-align: center;">4. Integrated NutraChat Context AI Bot Processing Module</p>
+          <!-- Corrected Image Path based on image_89e270.png -->
+          <img src="images/NutraGraph4.png" alt="NutraChat Artificial Intelligence Execution Engine Interface" style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
+    </dialog>
 
     <section class="section alt" aria-labelledby="project-video-title">
       <div class="container video-layout">
@@ -94,5 +169,6 @@
 
   <div data-footer></div>
   <script src="js/script.js" defer></script>
+  
 </body>
 </html>

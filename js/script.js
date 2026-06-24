@@ -31,7 +31,7 @@ const navLinks = [
   ["Home", "index.html"],
   ["About", "about.html"],
   ["Services", "services.html"],
-  ["Portfolio", "portfolio.html"],
+  ["Projects", "portfolio.html"],
   ["Contact", "contact.html"]
 ];
 
@@ -445,6 +445,23 @@ document.addEventListener("DOMContentLoaded", initHeroTypewriter);
 // Fallback initialization rule check for multi-page dynamic execution
 if (document.readyState === "interactive" || document.readyState === "complete") {
   initHeroTypewriter();
+}
+
+function openNutraPreview() {
+  const modalElement = document.getElementById("nutraPreviewModal");
+  if (!modalElement) return;
+  if (typeof modalElement.showModal === "function") {
+    modalElement.showModal();
+  } else {
+    modalElement.setAttribute("open", "");
+  }
+}
+
+function closeNutraPreview() {
+  const modalElement = document.getElementById("nutraPreviewModal");
+  if (modalElement) {
+    modalElement.close();
+  }
 }
 
 function setupCounters() {

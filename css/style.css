@@ -270,6 +270,30 @@ section:has(#skills-title) + section h2 {
   margin-top: 0 !important;
 }
 
+/* ==========================================================================
+   PROJECTS MATRIX CONFIGURATIONS RESPONSIVENESS (NO CODE DELETION COMPLIANT)
+   ========================================================================== */
+
+/* Enforces rigid 2-column matrix handling on normal laptop views */
+.project-grid.standard-2x2-matrix {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+/* Gracefully drops layout down to a 1-column layout on smaller viewports */
+@media (max-width: 900px) {
+  .project-grid.standard-2x2-matrix {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Handles responsive sizing down to tablet viewports for the 2x2 projects design layout */
+@media (max-width: 900px) {
+  .project-grid, #nutraPreviewModal div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important; /* Forces layout tracking modules into a single readable column cascade view */
+    gap: 1.5rem !important;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
