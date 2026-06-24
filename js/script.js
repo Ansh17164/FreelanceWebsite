@@ -35,7 +35,22 @@ const navLinks = [
   ["Contact", "contact.html"]
 ];
 
+/* ==========================================================================
+   UPDATED PROJECT DETAILS ARRAY (ORDERED PER REQUEST)
+   ========================================================================== */
 const projectDetails = {
+  nutragraph: {
+    title: "NutraGraph - Health-Tech Optimization Platform",
+    summary: "An advanced optimization and diet planning engine built with FastAPI, PostgreSQL, and the PuLP library. Features mathematical linear programming models to process seasonal metrics and a Retrieval-Augmented Generation (RAG) context engine.",
+    tech: "FastAPI, PostgreSQL, PuLP Optimization, RAG Model Integration, Python",
+    video: "https://www.youtube.com/embed/placeholder1" // Replace with your showcase video URL if available
+  },
+  trainTicket: {
+    title: "Train Ticket Reservation System",
+    summary: "A robust, multi-threaded backend architectural solution managing ticket availability matrices, reservation states, user verification loops, and secure transactional query blocks.",
+    tech: "Java, Relational Database Frameworks, Multi-threading System Logic",
+    video: "https://www.youtube.com/embed/placeholder2" // Replace with your showcase video URL if available
+  },
   business: {
     title: "Business Enquiry Website",
     summary: "A conversion-focused multi-page website with strong calls to action, service highlights, testimonials, SEO metadata, and responsive design.",
@@ -67,6 +82,31 @@ function currentPage() {
   return page || "index.html";
 }
 
+/* ==========================================================================
+   ADDED THEME SYSTEM CONTROLLER LOGIC
+   ========================================================================== */
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (!toggleBtn) return;
+
+  const initialTheme = localStorage.getItem("theme") || "dark";
+  document.documentElement.setAttribute("data-theme", initialTheme);
+  toggleBtn.innerHTML = initialTheme === "light" ? "🌙" : "☀️";
+
+  toggleBtn.addEventListener("click", () => {
+    const activeTheme = document.documentElement.getAttribute("data-theme");
+    if (activeTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      toggleBtn.innerHTML = "🌙";
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      toggleBtn.innerHTML = "☀️";
+    }
+  });
+}
+
 function renderHeader() {
   const mount = document.querySelector("[data-header]");
   if (!mount) return;
@@ -77,20 +117,25 @@ function renderHeader() {
     return `<li><a class="${active}" href="${href}">${label}</a></li>`;
   }).join("");
 
+  /* Re-engineered HTML string to explicitly group the action items together */
   mount.innerHTML = `
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="index.html" aria-label="Ansh Sharma home">
           <span class="brand-mark">
-            <img src="images/ansh-sharma-profile.png" alt="" width="42" height="42">
+            <img src="images/ansh-sharma-profile.png" alt="" width="42" height="42" class="brand-avatar">
           </span>
-          <span>Ansh Sharma</span>
+          <div class="brand-text">
+            <span class="brand-name">Ansh Sharma</span>
+            <span class="brand-subtitle">Full Stack Developer</span>
+          </div>
         </a>
-        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-        <nav aria-label="Primary navigation">
+        <nav aria-label="Primary navigation" style="display: flex; align-items: center; gap: 1rem; margin-left: auto;">
           <ul class="nav-list">${links}</ul>
+          <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle visual theme" style="cursor: pointer; background: none; border: none; font-size: 1.3rem; padding: 0.25rem;">☀️</button>
+          <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </nav>
       </div>
     </header>
@@ -98,10 +143,15 @@ function renderHeader() {
 
   const toggle = mount.querySelector(".nav-toggle");
   const menu = mount.querySelector(".nav-list");
-  toggle.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-  });
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+
+  // Force system initialization of the theme elements instantly
+  setupThemeToggle();
 }
 
 function renderFooter() {
@@ -113,13 +163,12 @@ function renderFooter() {
       <div class="container footer-grid">
         <section>
           <h2>Ansh Sharma</h2>
-          <p>Computer Science Engineering student and aspiring Software Engineer offering freelance development services for businesses and individuals.</p>
+          <p>Full-Stack Developer and Systems Engineer producing modular backend architectures, automated data scaling processing systems, and professional corporate applications.</p>
         </section>
         <section>
           <h3>Quick Links</h3>
           <div class="footer-links">
             ${navLinks.map(([label, href]) => `<a href="${href}">${label}</a>`).join("")}
-            <a href="frames-demo.html">Frame Demo</a>
           </div>
         </section>
         <section>
@@ -134,7 +183,7 @@ function renderFooter() {
         </section>
       </div>
       <div class="container footer-bottom">
-        <p>&copy; 2026 All Rights Reserved</p>
+        <p>&copy; 2026 All Rights Reserved | engineered by Ansh Sharma</p>
       </div>
     </footer>
   `;
@@ -211,14 +260,11 @@ function validateLead(data) {
   const errors = {};
   const namePattern = /^[A-Za-z ]+$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // Ensures 10 digits total, starting only with 6, 7, 8, or 9
   const phonePattern = /^[6-9]\d{9}$/;
 
   const trimmedName = data.fullName.trim();
-  // Splits by spaces and filters out any empty strings from accidental double spaces
   const nameParts = trimmedName.split(/\s+/).filter(part => part.length > 0);
 
-  // 1. Full Name Validation Block
   if (!trimmedName) {
     errors.fullName = "Name cannot be empty.";
   } else if (!namePattern.test(trimmedName)) {
@@ -227,17 +273,14 @@ function validateLead(data) {
     errors.fullName = "Please enter both your first name and last name.";
   }
 
-  // 2. Email Validation Block
   if (!emailPattern.test(data.email.trim())) {
     errors.email = "Enter a valid email address.";
   }
 
-  // 3. Phone Number Validation Block
   if (!phonePattern.test(data.phone.trim())) {
     errors.phone = "Phone number must be 10 digits and start with 6, 7, 8, or 9.";
   }
   
-  // 4. Other Fields Blocks
   if (!data.service) errors.service = "Please select a service.";
   if (!data.budget.trim() || Number.isNaN(Number(data.budget))) errors.budget = "Budget must be numeric.";
   if (data.description.trim().length < 20) errors.description = "Project description must be at least 20 characters.";
@@ -318,11 +361,11 @@ function setupContactForm() {
         portfolio_requested: leadData.portfolioRequest
       });
       if (leadData.portfolioRequest) trackEvent("portfolio_download");
-      showFormMessage("success", "Thank you. Your enquiry has been prepared successfully, and the portfolio PDF send flow is ready for EmailJS/API configuration.");
+      showFormMessage("success", "Thank you. Your project brief has been sent successfully straight to my engineering inbox!");
       form.reset();
     } catch (error) {
       console.error(error);
-      showFormMessage("error", "The form is valid, but the email/API service is not configured yet. Please update the placeholder settings in js/script.js.");
+      showFormMessage("error", "The form data is verified, but backend transmission requires active integration configurations in script.js.");
     }
   });
 }
@@ -344,6 +387,51 @@ function animateCounter(element) {
 
   element.textContent = "0";
   requestAnimationFrame(update);
+}
+
+function initHeroTypewriter() {
+  const targetElement = document.getElementById("typewriter-text");
+  if (!targetElement) return;
+
+  const words = ["Full Stack Developer", "Backend Developer", "Automation Engineer", "Problem Solver"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+
+  function type() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      targetElement.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50; // Delete faster than typing
+    } else {
+      targetElement.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 120; // Natural pacing speed
+    }
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      typingSpeed = 2000; // Pause at full word completion
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typingSpeed = 400; // Brief pause before typing next role string
+    }
+
+    setTimeout(type, typingSpeed);
+  }
+
+  type();
+}
+
+// Fire the typewriter system immediately upon document layout lifecycle loading
+document.addEventListener("DOMContentLoaded", initHeroTypewriter);
+// Fallback initialization rule check for multi-page dynamic execution
+if (document.readyState === "interactive" || document.readyState === "complete") {
+  initHeroTypewriter();
 }
 
 function setupCounters() {

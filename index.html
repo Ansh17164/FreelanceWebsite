@@ -64,38 +64,26 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand">
-        <img src="images/ansh-sharma-profile.png" alt="Ansh Sharma" class="brand-avatar">
-        <div class="brand-text">
-          <span class="brand-name">Ansh Sharma</span>
-          <span class="brand-subtitle">Full Stack Developer</span>
-        </div>
-      </a>
-      
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="nav-list">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div data-header></div>
 
   <main id="main">
     <section class="hero section" aria-labelledby="home-title">
-      <div class="container hero-grid">
+      <div class="container hero-grid" style="align-items: center;">
+        
         <div class="hero-copy">
-          <p class="eyebrow">Freelance software development for growing teams</p>
-          <h1 id="home-title">Hire Ansh Sharma for clean websites, backend systems, and reliable project delivery.</h1>
+          <div class="status-badge-container" style="margin-bottom: 1.5rem;">
+            <span class="status-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface-strong); border: 1px solid var(--line); padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; color: var(--text);">
+              <span style="width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span>
+              Open to opportunities
+            </span>
+          </div>
+
+          <h1 id="home-title" style="margin-bottom: 0.5rem;">Hi, I'm <span style="background: linear-gradient(135deg, var(--primary), var(--accent)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ansh Sharma</span></h1>
+          
+          <h2 class="typewriter-container" style="margin: 0 0 1.5rem 0; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; min-height: 3.8rem; color: var(--text);">
+            <span id="typewriter-text"></span><span class="typewriter-cursor" style="font-weight: 300; animation: blink 0.7s infinite;">|</span>
+          </h2>
+
           <p class="hero-text">I am a Computer Science Engineering student and aspiring Software Engineer helping businesses, founders, and individuals turn ideas into fast, maintainable digital products.</p>
           <div class="action-row">
             <a class="btn btn-primary" href="contact.html" data-track="hire_me">Hire Me</a>
@@ -107,12 +95,12 @@
             <span>SQL Databases</span>
           </div>
         </div>
-        <figure class="profile-panel">
-          <picture>
-            <img src="images/ansh-sharma-profile.png" alt="Professional profile photo of Ansh Sharma" width="1025" height="1536" loading="eager">
-          </picture>
-          <figcaption>Available for freelance projects, academic builds, and business websites.</figcaption>
-        </figure>
+        <div class="profile-frame-wrap" style="justify-self: center; position: relative;">
+          <div class="profile-circle-container" style="width: clamp(260px, 35vw, 400px); height: clamp(260px, 35vw, 400px); border-radius: 50%; overflow: hidden; border: 6px solid var(--surface-strong); box-shadow: var(--shadow); background: linear-gradient(135deg, rgba(13,107,111,0.1), rgba(199,38,58,0.1));">
+            <img src="images/ansh-sharma-profile.png" alt="Professional profile photo of Ansh Sharma" loading="eager">
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -177,15 +165,15 @@
         </div>
         <div class="numbers-grid" data-counter-section>
           <article class="number-card">
-            <strong data-count="25">0</strong>
+            <strong data-count="27">0</strong>
             <span>Projects Completed</span>
           </article>
           <article class="number-card">
-            <strong data-count="50">0</strong>
+            <strong data-count="32">0</strong>
             <span>Technologies Used</span>
           </article>
           <article class="number-card">
-            <strong data-count="35">0</strong>
+            <strong data-count="18">0</strong>
             <span>GitHub Repositories</span>
           </article>
           <article class="number-card">
@@ -215,19 +203,18 @@
             <p>Fast turnaround, clean pages, and helpful suggestions for improving project enquiries.</p>
             <cite>Portfolio Website Client</cite>
           </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" aria-labelledby="intro-video-title">
-      <div class="container video-layout">
-        <div>
-          <p class="eyebrow">Introduction</p>
-          <h2 id="intro-video-title">Watch my introduction video</h2>
-          <p>Use this video section to introduce your work style, services, and how you help clients move from idea to launch.</p>
-        </div>
-        <div class="video-frame">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/Akv9d1X_qKA?si=hVdNcwXOrkPX4GkA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+          <blockquote>
+            <p>Engineered a robust backend solution that automated our data entries and eliminated hours of manual spreadsheet tracking.</p>
+            <cite>Operations Lead</cite>
+          </blockquote>
+          <blockquote>
+            <p>Extremely knowledgeable in SQL architecture. Clean database normalization that optimized our application load times.</p>
+            <cite>Tech Founder</cite>
+          </blockquote>
+          <blockquote>
+            <p>Professional delivery, clean styling handling, and easy-to-read code. Exactly what our development team needed.</p>
+            <cite>Software Agency Client</cite>
+          </blockquote>
         </div>
       </div>
     </section>
@@ -250,6 +237,26 @@
           <details>
             <summary>Do you provide project source code?</summary>
             <p>Yes. Final deliverables can include source code, documentation, deployment notes, and a handover call.</p>
+          </details>
+          <details>
+            <summary>What tech stack do you specialize in?</summary>
+            <p>My core competencies include modern web frameworks (HTML5, CSS3, Vanilla JavaScript), robust Python application building, and enterprise relational database designs using SQL frameworks.</p>
+          </details>
+          <details>
+            <summary>How do we handle project communication and updates?</summary>
+            <p>I prioritize clear, transparent timelines. We will communicate via email, scheduled video handovers, or messaging channels with milestone updates at every development stage.</p>
+          </details>
+          <details>
+            <summary>Do you assist with website hosting and deployment?</summary>
+            <p>Yes. I can guide you through the process of setting up domains, configuring hosting parameters, and ensuring your production-ready platform goes live smoothly.</p>
+          </details>
+          <details>
+            <summary>What happens if I need bugs fixed or revisions after launch?</summary>
+            <p>Every contract includes a dedicated post-launch support window to monitor system stability, check cross-device responsiveness, and resolve any immediate functional bugs.</p>
+          </details>
+          <details>
+            <summary>How can I get started with an initial quote?</summary>
+            <p>Simply navigate to the "Contact" page or use the "Start an Enquiry" form below to provide a brief overview of your business goals and budget requirements.</p>
           </details>
         </div>
       </div>

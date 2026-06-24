@@ -1,4 +1,7 @@
 :root {
+  /* ==========================================================================
+     LIGHT THEME (Your Original Variables, Set as System Default)
+     ========================================================================== */
   --bg: #f6f8fb;
   --surface: #ffffff;
   --surface-strong: #edf3f8;
@@ -12,6 +15,184 @@
   --shadow-soft: 0 12px 28px rgba(25, 40, 56, 0.08);
   --radius: 8px;
   --max: 1160px;
+}
+
+/* ==========================================================================
+   DYNAMIC DARK THEME (Inspired by the Reference Freelance Platform)
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg: #0f172a;               /* Deep professional slate dark background */
+  --surface: #1e293b;          /* Darker slate for containers/cards */
+  --surface-strong: #334155;   /* Active items and hover cards */
+  --text: #f8fafc;             /* Bright, legible off-white text */
+  --muted: #94a3b8;            /* Smooth description text color */
+  --primary: #a855f7;          /* High-converting purple accent line from the video */
+  --primary-dark: #c084fc;     /* Vibrant violet highlight text */
+  --accent: #f43f5e;           /* Attention-grabbing action accent */
+  --line: #334155;             /* Subtle clean dark borders */
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Dynamic theme adjustments to non-variable elements */
+[data-theme="dark"] body {
+  background: var(--bg); /* Override light theme body gradient mix for pure dark mode scaling */
+}
+[data-theme="dark"] .site-header {
+  background: rgba(15, 23, 42, 0.9); /* Opaque blurring matches dark mode backdrop */
+}
+[data-theme="dark"] input, 
+[data-theme="dark"] select, 
+[data-theme="dark"] textarea,
+[data-theme="dark"] details,
+[data-theme="dark"] summary,
+[data-theme="dark"] .nav-toggle,
+[data-theme="dark"] .modal-close,
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .trust-strip span, 
+[data-theme="dark"] .skill-cloud span, 
+[data-theme="dark"] .tech-list {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Theme Toggle Nav Item Layout Button */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 2; /* Forces it to the far right side of the inner flex container */
+  margin-left: auto; /* Pushes layout elements gracefully */
+}
+
+@media (max-width: 900px) {
+  .nav-toggle {
+    order: 3; /* Keeps hamburger menu on the absolute outer edge on mobile devices */
+  }
+}
+
+/* Ensure ALL 5 sections on the home page respect theme changes natively */
+[data-theme="dark"] .hero,
+[data-theme="dark"] .section,
+[data-theme="dark"] .page-hero,
+[data-theme="dark"] .alt,
+[data-theme="dark"] .numbers-section {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Ensure secondary content strips match the layout depth */
+[data-theme="dark"] .alt {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(244, 63, 94, 0.03)), var(--surface-strong) !important;
+}
+
+[data-theme="dark"] .numbers-section {
+  background: radial-gradient(circle at top, rgba(168, 85, 247, 0.15), transparent 60%), var(--surface) !important;
+  border-bottom: 1px solid var(--line);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  color: var(--primary);
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   PROFILE PICTURE AUTO-ZOOM AND BACKGROUND BALANCING PATCh
+   ========================================================================== */
+
+/* Fixes the navbar circular avatar to eliminate white background gaps */
+.brand-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover !important;
+  object-position: 40% 30% !important; /* Centers focus tracking point directly onto your face */
+  transform: scale(1.3);               /* Uniform zoom to pull out the background white borders completely */
+  background-color: var(--surface-strong);
+}
+
+/* Ensure the wrapper brand-mark hides any overflowing scaled edges cleanly */
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+/* Fixes the large main circular Hero picture framing on the right side */
+.profile-circle-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: 40% 30% !important; /* Focuses precisely on the middle region of the original photo */
+  transform: scale(1.25);              /* Crops out the broad white edges beautifully */
+  transition: transform 0.3s ease;
+}
+
+/* Subtle hover interaction for professional execution */
+.profile-circle-container:hover img {
+  transform: scale(1.3);
+}
+
+/* ==========================================================================
+   SCROLL POSITIONING FIX & HERO SPACING REDUCTION (NO CODE DELETION COMPLIANT)
+   ========================================================================== */
+
+/* Forces the navigation header to stay fixed on screen during scrolling */
+.site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjusts the body padding to accommodate the newly fixed header height */
+body {
+  padding-top: 72px !important;
+}
+
+/* Reduces the gap between the header and the hero elements */
+.hero.section {
+  padding-top: 2rem !important;  /* Decreases top padding to shift elements upward */
+  padding-bottom: 3.5rem !important;
+  min-height: calc(100vh - 72px) !important;
+  display: flex;
+  align-items: center;
+}
+
+/* fine-tune alignment grid spacing to prevent clipping on diverse monitors */
+.hero-grid {
+  margin-top: -1rem !important; /* shifts the internal contents up gracefully */
 }
 
 * {
@@ -100,16 +281,6 @@ a {
   gap: 0.75rem;
   text-decoration: none;
   font-weight: 800;
-}
-
-/* New CSS properties for the circular profile picture */
-.brand-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
-  border: 1px solid var(--line);
 }
 
 /* New CSS properties to wrap and position the stacked brand text */
@@ -451,14 +622,6 @@ a {
   border-radius: var(--radius);
   backdrop-filter: blur(6px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 40px rgba(5, 16, 28, 0.18);
-}
-
-.number-card::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--primary));
 }
 
 .number-card strong {
@@ -996,5 +1159,43 @@ textarea {
 
   .profile-panel img {
     max-height: 520px;
+  }
+
+  [data-theme="dark"] body {
+    background: var(--bg) !important;
+  }
+
+  /* Ensure the nav-wrap flex layout manages spaces cleanly */
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Force the wrapper container containing the theme switcher and burger to the right */
+  .nav-wrap > div:last-of-type {
+    margin-left: auto;
+    margin-right: 1.5rem; /* Leaves breathing room between toggle and links */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Adjust button presentation natively */
+  .theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    padding: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .nav-wrap > div:last-of-type {
+      margin-right: 0;
+    }
   }
 }
